@@ -1,0 +1,60 @@
+
+SELECT * FROM person.Person;
+
+SELECT Title /*BUSCAR APENAS TITULOS*/
+FROM person.Person;
+
+SELECT * FROM 
+person.EmailAddress;
+
+
+SELECT firstname, lastname /**SELECIONAR NOME E SOBRENOME*/
+FROM person.person;
+
+
+SELECT DISTINCT firstname --COMO ELIMINAR OS DUPLICADOS
+FROM person.person;
+
+SELECT DISTINCT firstname, lastname --QUANTOS NOMES E SOBRENOMES UNICOS TEMOS EM NOSSA TABELA
+FROM person.person;
+
+--WHERE
+SELECT * FROM person.Person
+WHERE lastname = 'Miller' and FirstName = 'Anna';
+
+SELECT * FROM production.product
+WHERE color = 'blue' or color = 'black';
+
+
+SELECT * FROM production.product
+WHERE ListPrice > 1500 and ListPrice < 3000;
+
+--DESAFIO 0: A EQUIPE DE PRODUCAO DE PRODUTOS PRECISA DE TODAS AS PEÇAS QUE PESAM MAIS 500KG MAS NÃO MAIS QUE 700KG
+SELECT * FROM production.product
+WHERE Weight > 500 and Weight <= 700;
+
+--DESAFIO 1: O MARKETING PRECISA DE UMA LISTA DE TODOS OS EMPREGADOS(employees), que são casados (single=solteiro and married=casados) and assalariados(salaried)
+SELECT * FROM HumanResources.Employee 
+WHERE MaritalStatus = 'm' and SalariedFlag = 'true';
+
+--DESAFIO 2: UM USUÁRIO CHAMADO Peter Krebs ESTÁ DEVENDO UM PAGAMENTO, PRECISO QUE ENCONTRE O E-MAIL DELE, PARA QUE POSSAMOS ENVIAR A COBRANÇA.
+SELECT * FROM person.person, person.EmailAddress
+WHERE 
+
+-- COUNT = CONTAGEM DO NUMERO DE TODAS AS COLUNAS DE DETERMINADA TABELA, CASO QUERIA UMA COLUNA ESPECIFICA ADIOCIONAR O NOME DENTRO DO PARENTESE
+SELECT COUNT(distinct Title)
+FROM Person.Person;
+
+--DESAFIO 3: QUANTOS PRODUTOS TEMOS CADASTRADOS NA NOSSA TABELA DE PRODUTOS.(PRODUCTION.PRODUCT)
+SELECT * FROM production.product;
+SELECT COUNT(*)
+FROM production.product;
+
+--DESAFIO 4: QUANTOS TAMANHOS TEMOS CADASTRADOS EM NOSSSA TABELA
+SELECT COUNT(SIZE)
+FROM production.product;
+
+-- DESAFIO 5; QUANTOS TAMANHOS UNICOS EU TENHO DENTRO DA TABELA.
+SELECT COUNT(DISTINCT SIZE)
+FROM production.product;
+
