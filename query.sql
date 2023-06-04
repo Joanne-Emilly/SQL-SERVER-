@@ -59,8 +59,8 @@ SELECT COUNT(DISTINCT SIZE)
 FROM production.product;
 
 --COMANDO TOP (COMO SELECIONAR OS 10 PRIMEIROS PROTUDOS)
-SELECT TOP 10 *
-FROM Production.Product;
+SELECT TOP (10) *
+FROM production.product;
 
  --COMANDO ORDER BY(ordenar em ordem crescente e decrescente)
 SELECT *  
@@ -71,7 +71,7 @@ ORDER BY FirstName asc, MiddleName asc, LastName desc;
 
 SELECT TOP 10 ProductID
 FROM Production.Product
-ORDER BY ListPrice desc
+ORDER BY ListPrice desc;
 
 -- SQL BETWEEN É USADO PARA ENCONTRAR ENTRE UM VALOR MINIMO E UM VALOR MAXIMO
 -- VALOR BETWEEN MININO  AND MAXIMO
