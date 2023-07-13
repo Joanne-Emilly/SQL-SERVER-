@@ -69,7 +69,7 @@ ORDER BY FirstName asc, MiddleName asc, LastName desc;
 
 --DESAFIO 6: OBTER OS 10 PRODUTOS MAIS CAROS DO SISTEMA LISTANDO DO MAIS CARO PARA O MAIS BARATO;
 
-SELECT TOP 10 ProductID
+SELECT TOP 10 ProductI
 FROM Production.Product
 ORDER BY ListPrice desc;
 
