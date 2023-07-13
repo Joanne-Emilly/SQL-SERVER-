@@ -1,8 +1,5 @@
-
-
+--AULA 13 GROUP BY + DESAFIOS (INTERMEDIÁRIOS)
 ----COMANDO GROUP BY: ELE DIVIDE O RESULTADO DA SUA PESQUISA EM GRUPOS
-
-
 SELECT coluna01, SUM(coluna2) AS "SOMA"
 FROM tabela01
 GROUP BY coluna02;
@@ -22,7 +19,6 @@ FROM person.person
 GROUP BY FirstName;
 
 --QUAL A MEDIA DE PREÇO DOS PRODUTOS SILVER?
-
 SELECT Color, AVG(ListPrice) AS "PREÇO"
 FROM Production.Product
 WHERE Color = 'Silver'
@@ -34,4 +30,8 @@ FROM person.person
 GROUP BY MiddleName;
 
 --QUAL A MEDIA EM QUE CADA PRODUTO É VENDIDO NA LOJA
+Select ProductID, AVG(OrderQty) AS "QUANTIDADE"
+FROM Sales.SalesOrderDetail
+GROUP BY ProductID
 
+--
