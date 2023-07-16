@@ -1,3 +1,5 @@
+
+
 SELECT *
 FROM Sales.SalesOrderDetail;
 
@@ -20,107 +22,86 @@ GROUP BY MiddleName;
 
 --QUANTIDADE DE CADA PRODUTO VENDIDO
 
-SELECT * FROM Sales.SalesOrderDetail;
+SELECT * FROM Sales.SalesOrderDetail
 
 Select ProductID, AVG(OrderQty) AS "QUANTIDADE"
 FROM Sales.SalesOrderDetail
-GROUP BY ProductID;
+GROUP BY ProductID
 
 SELECT SpecialOfferID, SUM(UnitPrice) AS "SOMA" 
 FROM Sales.SalesOrderDetail
-GROUP BY SpecialOfferID;
+GROUP BY SpecialOfferID
 
-SELECT * FROM Production.workorder;
+SELECT * FROM Production.workorder
 
 SELECT ProductID, COUNT(ProductID) AS "CONTAGEM", 
 AVG(orderqty) AS "MEDIA"
 FROM Production.workorder
-GROUP BY ProductID;
-
---AULA 13 GROUP BY + DESAFIOS (INTERMEDIÁRIOS)
-----COMANDO GROUP BY: ELE DIVIDE O RESULTADO DA SUA PESQUISA EM GRUPOS
-SELECT coluna01, SUM(coluna2) AS "SOMA"
-FROM tabela01
-GROUP BY coluna02;
-
-SELECT SpecialOfferID, SUM(UnitPrice) AS "SOMA"
-FROM Sales.SalesOrderDetail
-GROUP BY SpecialOfferID;
-
---fazer a contagem de produtos vendidos
-SELECT ProductID, COUNT(ProductID) AS "CONTAGEM"
-FROM Sales.SalesOrderDetail
-GROUP BY ProductID;
-
---QUANTOS NOME DE CADA NOME TEMOS NO NOSSO BANCO DE DADOS
-SELECT FirstName, COUNT(FirstName)
-FROM person.person 
-GROUP BY FirstName;
-
---QUAL A MEDIA DE PREÇO DOS PRODUTOS SILVER?
-SELECT Color, AVG(ListPrice) AS "PREÇO"
-FROM Production.Product
-WHERE Color = 'Silver'
-GROUP BY Color;
-
---QUANTAS PESSOAS TEM O MESMO MIDDLENAME
-SELECT MiddleName, COUNT(MiddleName)
-FROM person.person
-GROUP BY MiddleName;
-
---QUAL A MEDIA EM QUE CADA PRODUTO É VENDIDO NA LOJA
-Select ProductID, AVG(OrderQty) AS "QUANTIDADE"
-FROM Sales.SalesOrderDetail
-GROUP BY ProductID;
-
---QUANTOS PRODUTOS E QUAL A QUANTIDADE MEDIA DE PRODUTOS TEMOS CADASTRADOS NAS NOSSAS ORDENS DE SERVICO(WORKORDER), AGRUPADOS POR ProductID
-
-Select ProductID, COUNT(ProductID) AS "CONTAGEM", 
-AVG(orderqty) AS "MEDIA"
-FROM Production.workorder
-GROUP BY ProductID;
+GROUP BY ProductID
 
 --HAVING É USADO EM JUNÇAO COM O GROUP BY PARA FILTRAR AGRUPAMENTOS
---ATIV01: VAMOS DIZER QUE QUEREMOS SABER QUAIS NOMES NO SISTEMA TEM UMA OCORRENCIA MAIOR QUE 10 VEZES, E ORDEM EM DECRESCENTE
+
+select * from Person.Person
 
 SELECT FirstName, COUNT(FirstName) AS "CONTAGEM"
 FROM Person.Person
 GROUP BY FirstName
 HAVING COUNT(FirstName) > 10
-ORDER BY COUNT(FirstName) DESC; 
+ORDER BY COUNT(FirstName) DESC 
 
 --QUAIS PRODUTOS QUE NO TOTAL DE VENDAS	ESTÃO ENTRE 162K A 500K
 
-SELECT * FROM Sales.SalesOrderDetail;
+SELECT * FROM Sales.SalesOrderDetail
+
+SELECT TOP 10 *
+FROM Sales.SalesOrderDetail
 
 SELECT ProductID, SUM(LineTotal)
 FROM Sales.SalesOrderDetail
 GROUP BY ProductID
-HAVING SUM(LineTotal) BETWEEN 162000 and 500000;
---obs: between "entre"
+HAVING SUM(LineTotal) BETWEEN 162000 and 500000
 
-SELECT FirstName, COUNT(FirstName) AS "CONTAGEM"
+--QUAIS NOME TEM UMA OCORRENCIA MAIOR QUE 10 VEZES
+
+SELECT * FROM Person.Person
+SELECT FirstName, COUNT(FirstName) AS "SOMA"
 FROM Person.Person
+WHERE Title = 'Mr.'
 GROUP BY FirstName
 HAVING COUNT(FirstName) > 10
-ORDER BY COUNT(FirstName) DESC;
 
---DESAFIO DO "AS"
---1) ENCONTRAR O NOM E SOBRENOME DA TABELA Person.Person E RENOMEA-LA PARA "NOME E SOBRENOME"
+--ESTAMOS QUERENDO IDENTIFICAR AS PROVINCIAS COM O MAIOR NUMERO DE CADASTRO REGISTRADO EM NOSSOS SISTEMAS
+--ENTÃO É NECESSARIO IDENTIFICAR QUAIS PROVINCIAS ESTAO REGISTRADAS NO BD MAIS QUE 1000 VEZES
+
+SELECT StateProvinceID, COUNT(StateProvinceID) AS "QUANTIDADE"
+FROM Person.Address
+GROUP BY StateProvinceID
+HAVING COUNT(StateProvinceID) > 1000
+
+
+--QUAIS PRODUTOS NAO ESTAO TRAZENDO EM MEDIA UM MILHÃO EM TOTAL DE VENDAS
+
+SELECT * FROM Sales.SalesOrderDetail
+
+SELECT ProductID, AVG(LineTotal) AS "MEDIA"
+FROM Sales.SalesOrderDetail
+GROUP BY ProductID
+HAVING AVG(LineTotal) < 100000
+
+SELECT TOP 10 AVG(ListPrice) AS "Media de Preço"
+FROM Production.Product
+
 SELECT FirstName AS "NOME", LastName AS "SOBRENOME"
-FROM Person.Person;
---2) ENCONTRAR O NUMERO DO PRODUTO E RENOMEA-LO
+FROM Person.Person
+
 SELECT ProductNumber AS "CODIGO DO PRODUTO"
-FROM Production.Product;
---3) ENCONTRAR O PRECO UNITARIO E RENOMEA-LO
+FROM Production.Product
+ORDER BY ProductNumber DESC
+
+SELECT * FROM Sales.SalesOrderDetail
+
 SELECT SalesOrderDetailID AS "CODIGO DO PRODUTO", UnitPrice AS "PREÇO UNITARIO"
 FROM Sales.SalesOrderDetail
-ORDER BY SalesOrderDetailID DESC
+ORDER BY SalesOrderDetailID ASC
 
--- AULA 16 JOINS + DESAFIOS 
---EXISTEM 3 TIPOS DE JOINS USADOS
---QUE SÃO: OS INNER JOIN, OUTER JOIN E SEF-JOIN
-
-SELECT C.Cliente, C.Nome, E.Rua, E.Cidade
-FROM Cliente C
-INNER JOIN Endereco E ON E.EnderecoID = C.EnderecoID;
+--BusinessEntityId, FirstName,  
