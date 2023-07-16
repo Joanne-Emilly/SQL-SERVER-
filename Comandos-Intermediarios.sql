@@ -50,3 +50,17 @@ GROUP BY FirstName
 HAVING COUNT(FirstName) > 10
 ORDER BY COUNT(FirstName) DESC 
 
+--QUAIS PRODUTOS QUE NO TOTAL DE VENDAS	ESTÃO ENTRE 162K A 500K
+
+SELECT * FROM Sales.SalesOrderDetail
+
+SELECT TOP 10 *
+FROM Sales.SalesOrderDetail
+
+SELECT ProductID, SUM(LineTotal)
+FROM Sales.SalesOrderDetail
+GROUP BY ProductID
+HAVING SUM(LineTotal) BETWEEN 162000 and 500000
+--obs: between "entre"
+
+

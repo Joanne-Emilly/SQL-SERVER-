@@ -29,3 +29,21 @@ GROUP BY ProductID
 SELECT SpecialOfferID, SUM(UnitPrice) AS "SOMA" 
 FROM Sales.SalesOrderDetail
 GROUP BY SpecialOfferID
+
+SELECT * FROM Production.workorder
+
+SELECT ProductID, COUNT(ProductID) AS "CONTAGEM", 
+AVG(orderqty) AS "MEDIA"
+FROM Production.workorder
+GROUP BY ProductID
+
+--HAVING É USADO EM JUNÇAO COM O GROUP BY PARA FILTRAR AGRUPAMENTOS
+
+select * from Person.Person
+
+SELECT FirstName, COUNT(FirstName) AS "CONTAGEM"
+FROM Person.Person
+GROUP BY FirstName
+HAVING COUNT(FirstName) > 10
+ORDER BY COUNT(FirstName) DESC 
+
