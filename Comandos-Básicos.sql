@@ -59,7 +59,7 @@ SELECT COUNT(DISTINCT SIZE)
 FROM production.product;
 
 --COMANDO TOP (COMO SELECIONAR OS 10 PRIMEIROS PROTUDOS)
-SELECT TOP (10) *
+SELECT TOP "10 *"
 FROM Production.Product;
 
  --COMANDO ORDER BY(ordenar em ordem crescente e decrescente)
@@ -69,7 +69,7 @@ ORDER BY FirstName asc, MiddleName asc, LastName desc;
 
 --DESAFIO 6: OBTER OS 10 PRODUTOS MAIS CAROS DO SISTEMA LISTANDO DO MAIS CARO PARA O MAIS BARATO;
 
-SELECT TOP 10 ProductID
+SELECT TOP 10 * ProductID
 FROM Production.Product
 ORDER BY ListPrice desc;
 
@@ -134,22 +134,22 @@ WHERE Name  LIKE 'road%';
 
 --COMANDOS 'MIN' 'MAX' 'SUM' E 'AVG': SÃO FUNCOÇES DE AGREGAGAÇÃO, 
 --ONDE ELAS COMBINAM DADOS DE UMA TABELA EM UM RESULTADO SÓ
-SELECT TOP 10 SUM(linetotal) as "SOMA"
+SELECT TOP 10 * SUM(linetotal), AS "SOMA"
 FROM Sales.SalesOrderDetail;
 
-SELECT TOP 10 MIN(linetotal) as "VALOR MINIMO"
+SELECT TOP 10 * MIN(linetotal), AS "VALOR MINIMO"
 FROM Sales.SalesOrderDetail;
 
-SELECT TOP 10 MAX(linetotal) as "VALOR MAXIMO"
+SELECT TOP 10 * MAX(linetotal), AS "VALOR MAXIMO"
 FROM Sales.SalesOrderDetail;
 
-SELECT TOP 10 AVG(linetotal) as "MEDIA"
+SELECT TOP 10 * AVG(linetotal) AS"MEDIA"
 FROM Sales.SalesOrderDetail;
 
 -- AULA 15 "AS" + DESAFIOS SERVE PARA RENOMEAR UM 
 
-SELECT TOP 10 AVG(ListPrice) AS "Media de Preço"
-FROM Production.Product
+SELECT AVG(ListPrice) AS "Media de Preço"
+FROM Production.Product;
 
 SELECT * FROM person.Person;
 

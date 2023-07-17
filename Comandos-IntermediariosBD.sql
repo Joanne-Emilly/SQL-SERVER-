@@ -22,53 +22,53 @@ GROUP BY MiddleName;
 
 --QUANTIDADE DE CADA PRODUTO VENDIDO
 
-SELECT * FROM Sales.SalesOrderDetail
+SELECT * FROM Sales.SalesOrderDetail;
 
 Select ProductID, AVG(OrderQty) AS "QUANTIDADE"
 FROM Sales.SalesOrderDetail
-GROUP BY ProductID
+GROUP BY ProductID;
 
 SELECT SpecialOfferID, SUM(UnitPrice) AS "SOMA" 
 FROM Sales.SalesOrderDetail
-GROUP BY SpecialOfferID
+GROUP BY SpecialOfferID;
 
-SELECT * FROM Production.workorder
+SELECT * FROM Production.workorder;
 
 SELECT ProductID, COUNT(ProductID) AS "CONTAGEM", 
 AVG(orderqty) AS "MEDIA"
 FROM Production.workorder
-GROUP BY ProductID
+GROUP BY ProductID;
 
 --HAVING É USADO EM JUNÇAO COM O GROUP BY PARA FILTRAR AGRUPAMENTOS
 
-select * from Person.Person
+select * from Person.Person;
 
 SELECT FirstName, COUNT(FirstName) AS "CONTAGEM"
 FROM Person.Person
 GROUP BY FirstName
 HAVING COUNT(FirstName) > 10
-ORDER BY COUNT(FirstName) DESC 
+ORDER BY COUNT(FirstName) DESC;
 
 --QUAIS PRODUTOS QUE NO TOTAL DE VENDAS	ESTÃO ENTRE 162K A 500K
 
-SELECT * FROM Sales.SalesOrderDetail
+SELECT * FROM Sales.SalesOrderDetail;
 
-SELECT TOP 10 *
-FROM Sales.SalesOrderDetail
+SELECT TOP "10 *"
+FROM Sales.SalesOrderDetail;
 
 SELECT ProductID, SUM(LineTotal)
 FROM Sales.SalesOrderDetail
 GROUP BY ProductID
-HAVING SUM(LineTotal) BETWEEN 162000 and 500000
+HAVING SUM(LineTotal) BETWEEN 162000 and 500000;
 
 --QUAIS NOME TEM UMA OCORRENCIA MAIOR QUE 10 VEZES
 
-SELECT * FROM Person.Person
+SELECT * FROM Person.Person;
 SELECT FirstName, COUNT(FirstName) AS "SOMA"
 FROM Person.Person
 WHERE Title = 'Mr.'
 GROUP BY FirstName
-HAVING COUNT(FirstName) > 10
+HAVING COUNT(FirstName) > 10;
 
 --ESTAMOS QUERENDO IDENTIFICAR AS PROVINCIAS COM O MAIOR NUMERO DE CADASTRO REGISTRADO EM NOSSOS SISTEMAS
 --ENTÃO É NECESSARIO IDENTIFICAR QUAIS PROVINCIAS ESTAO REGISTRADAS NO BD MAIS QUE 1000 VEZES
@@ -76,32 +76,73 @@ HAVING COUNT(FirstName) > 10
 SELECT StateProvinceID, COUNT(StateProvinceID) AS "QUANTIDADE"
 FROM Person.Address
 GROUP BY StateProvinceID
-HAVING COUNT(StateProvinceID) > 1000
+HAVING COUNT(StateProvinceID) > 1000;
 
 
 --QUAIS PRODUTOS NAO ESTAO TRAZENDO EM MEDIA UM MILHÃO EM TOTAL DE VENDAS
 
-SELECT * FROM Sales.SalesOrderDetail
+SELECT * FROM Sales.SalesOrderDetail;
 
 SELECT ProductID, AVG(LineTotal) AS "MEDIA"
 FROM Sales.SalesOrderDetail
 GROUP BY ProductID
-HAVING AVG(LineTotal) < 100000
+HAVING AVG(LineTotal) < 100000;
 
-SELECT TOP 10 AVG(ListPrice) AS "Media de Preço"
-FROM Production.Product
+SELECT TOP "10", AVG(ListPrice) AS "Media de Preço"
+FROM Production.Product;
 
 SELECT FirstName AS "NOME", LastName AS "SOBRENOME"
-FROM Person.Person
+FROM Person.Person;
 
 SELECT ProductNumber AS "CODIGO DO PRODUTO"
 FROM Production.Product
-ORDER BY ProductNumber DESC
+ORDER BY ProductNumber DESC;
 
-SELECT * FROM Sales.SalesOrderDetail
+SELECT * FROM Sales.SalesOrderDetail;
 
 SELECT SalesOrderDetailID AS "CODIGO DO PRODUTO", UnitPrice AS "PREÇO UNITARIO"
 FROM Sales.SalesOrderDetail
-ORDER BY SalesOrderDetailID ASC
+ORDER BY SalesOrderDetailID ASC;
 
+--AULA 16 JOINS
+--EXITEM 3 TIPOS DE JOINS
+--INNER JOIN, OUTER JOIN, SELF-JOIN
 --BusinessEntityId, FirstName,  
+
+ SELECT C.Cliente, C.Nome, E.Rua, E.Cidade
+ FROM C.Cliente
+ INNER JOIN Endereco E ON EnderecoID = C.EnderecoID,
+
+ DOIS, JOANNE, RUA CEM, TIMON;
+
+ --BusinessEntityId, FirstName, LastName, EmailAddress
+SELECT p.BusinessEntityID,p.FirstName,p.LastName,pe.EmailAddress
+FROM Person.Person as P
+INNER JOIN Person.EmailAddress PE on P.BusinessEntityID = PE.BusinessEntityID;
+
+SELECT TOP "10 *"
+FROM Person.Person;
+
+SELECT TOP "10 *" 
+FROM Person.EmailAddress;
+
+--EXEMPLO 2: NOMES DOS PRODUTOS E AS INFORMACOES DE SUAS SUBCATEGORIAS
+
+SELECT TOP "10 *" 
+FROM Production.Product;
+
+SELECT TOP "10 *" 
+FROM Production.ProductSubcategory;
+
+SELECT pr.ListPrice, pr.Name
+FROM Production.Product AS pr
+INNER JOIN Production.ProductSubcategory pc 
+on pr.ProductSubcategoryID = pc.ProductSubcategoryID;
+
+--EXEMPLO 3: 
+SELECT * FROM Sales.SalesOrderDetail;
+SELECT * FROM Sales.SalesOrderHeader;
+
+SELECT TOP "10 *"
+FROM Sales.SalesOrderDetail as SA
+INNER JOIN Sales.SalesOrderHeader as SS ON SA.SalesOrderID = SS.SalesOrderID;
