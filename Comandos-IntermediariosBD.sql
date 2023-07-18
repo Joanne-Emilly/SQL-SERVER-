@@ -146,3 +146,5 @@ SELECT * FROM Sales.SalesOrderHeader;
 SELECT TOP "10 *"
 FROM Sales.SalesOrderDetail as SA
 INNER JOIN Sales.SalesOrderHeader as SS ON SA.SalesOrderID = SS.SalesOrderID;
+
+
