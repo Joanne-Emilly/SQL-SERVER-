@@ -148,4 +148,22 @@ FROM Sales.SalesOrderDetail as SA
 INNER JOIN Sales.SalesOrderHeader as SS ON SA.SalesOrderID = SS.SalesOrderID;
 
 --DESAFIO 01 JOIN
- 
+SELECT * FROM person.PhoneNumberType;
+SELECT * FROM person.PersonPhone;
+
+SELECT PA.BusinessEntityID, P.Name, PA.PhoneNumberTypeID, PA.PhoneNumber
+FROM Person.PhoneNumberType AS P
+INNER JOIN Person.PersonPhone PA ON PA.PhoneNumberTypeID = P.PhoneNumberTypeID;
+
+--DESAFIO 02 JOINS
+SELECT * FROM Person.StateProvince;
+SELECT * FROM Person.Address;
+--ADDRESSID, STATEPROVINCEID, CITY. NOME_DO_ESTADO
+SELECT PA.AddressID, P.StateProvinceID,  P.Name, PA.City
+FROM Person.StateProvince as P
+INNER JOIN Person.Address PA ON P.StateProvinceID = PA.StateProvinceID;
+
+--AULA 17 - INTERMEDIARIO  SQL JOINS 
+--DESAFIO 02 JOINS
+
+
